@@ -4,4 +4,4 @@ Sometimes you want to switch to theme A while displaying theme B for your visito
 
 ![WP Theme Switcher UI](https://static.wpclevel.com/img/wp-theme-switcher.png)
 
-DO NOT CHANGE ANY WORDPRESS SETTINGS WHILE SWITCHING, JUST MAKE CHANGES TO THE THEME!!!
+:wave: DO NOT CHANGE ANY WORDPRESS SETTINGS WHILE SWITCHING, JUST MAKE CHANGES TO THE THEME!!!
