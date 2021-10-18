@@ -48,7 +48,7 @@ function wp_theme_switcher_admin_menu_bar($wp_admin_bar)
     $wp_admin_bar->add_menu([
         'id' => 'wp_theme_switcher_inherit',
         'parent' => 'wp_theme_switcher',
-        'title' => $seleted ? __('Default', 'textdomain') : __('Default', 'textdomain') . ' ' . __('(Active)', 'textdomain'),
+        'title' => __('Default', 'textdomain'),
         'href' => $req_var ? $req_uri . '&wpts-selected-theme=inherit' : $req_uri . '?wpts-selected-theme=inherit'
     ]);
 

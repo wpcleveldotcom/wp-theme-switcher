@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Theme Switcher
  * Plugin URI: https://github.com/wpcleveldotcom/wp-theme-switcher
- * Description: Allowing you to use a test theme while keeping a production theme for visitors.
+ * Description: Allowing you to preview a different theme from your visitors directly on your site.
  * Author: WP Clevel
  * Author URI: https://wpclevel.com
  * Version: 1.0.0
