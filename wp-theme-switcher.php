@@ -2,12 +2,12 @@
 /**
  * Plugin Name: WP Theme Switcher
  * Plugin URI: https://github.com/wpcleveldotcom/wp-theme-switcher
- * Description: Allowing you to preview a different theme from your visitors directly on your site.
+ * Description: Allowing you switching themes without affecting your visitors.
  * Author: WP Clevel
  * Author URI: https://wpclevel.com
  * Version: 1.0.0
  * Text Domain: wp-theme-switcher
- * Tested up to: 5.7
+ * Tested up to: 5.8.1
  * License:  GPL v3
  */
 
