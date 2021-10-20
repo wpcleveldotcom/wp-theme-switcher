@@ -30,6 +30,8 @@ if (isset($_GET['wpts-selected-theme'])) {
  */
 function wp_theme_switcher_admin_menu_bar($wp_admin_bar)
 {
+    global $wpdb;
+
     $themes = wp_get_themes();
 
     if (empty($themes)) {
@@ -39,6 +41,10 @@ function wp_theme_switcher_admin_menu_bar($wp_admin_bar)
     $req_uri = $_SERVER['REQUEST_URI'];
     $req_var = parse_url($req_uri, PHP_URL_QUERY);
     $seleted = empty($_COOKIE['wpts-selected-theme']) ? false : $_COOKIE['wpts-selected-theme'];
+
+    $is_child_theme = is_child_theme();
+    $default_template = $wpdb->get_var("SELECT option_value from $wpdb->options WHERE option_name='template' LIMIT 1;");
+    $default_stylesheet = $wpdb->get_var("SELECT option_value from $wpdb->options WHERE option_name='stylesheet' LIMIT 1;");
 
     $wp_admin_bar->add_node([
         'id' => 'wp_theme_switcher',
@@ -52,16 +58,15 @@ function wp_theme_switcher_admin_menu_bar($wp_admin_bar)
         'href' => $req_var ? $req_uri . '&wpts-selected-theme=inherit' : $req_uri . '?wpts-selected-theme=inherit'
     ]);
 
-    foreach ($themes as $stylesheet => $theme) {
-        if ($theme->parent()) {
+    foreach ($themes as $slug => $theme) {
+        if (($is_child_theme && $slug == $default_stylesheet) || $slug == $default_template) {
             continue;
         }
-        $title = $seleted && $seleted == $stylesheet ? ucwords(str_replace(['-', '_'], ' ', $stylesheet)) .  ' ' . __('(Active)', 'textdomain') : ucwords(str_replace(['-', '_'], ' ', $stylesheet));
         $wp_admin_bar->add_menu([
-            'id' => 'wp_theme_switcher_' . $stylesheet,
+            'id' => 'wp_theme_switcher_' . $slug,
             'parent' => 'wp_theme_switcher',
-            'title' => $title,
-            'href' => $req_var ? $req_uri . '&wpts-selected-theme=' . $stylesheet : $req_uri . '?wpts-selected-theme=' . $stylesheet
+            'title' => $seleted && $seleted == $slug ? $theme->Name .  ' ' . __('(Active)', 'textdomain') : $theme->Name,
+            'href' => $req_var ? $req_uri . '&wpts-selected-theme=' . $slug : $req_uri . '?wpts-selected-theme=' . $slug
         ]);
     }
 }
